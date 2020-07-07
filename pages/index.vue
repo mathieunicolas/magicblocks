@@ -17,7 +17,8 @@
 </template>
 
 <script>
-    const hostLol = 'http://localhost:3000'
+    //const hostLol = 'http://localhost:3000'
+    const hostLol = 'https://golgoth.duckdns.org'
 export default {
     async asyncData({ $axios }) {
         let data = await $axios.$get(hostLol + "/api/dateNextMB")
