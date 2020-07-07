@@ -29,7 +29,7 @@ export default {
         return { data, dateMB, timestamp, refresh }
     },
     mounted() {
-        this.refresh = this.$nuxt.$route.query.t || 30
+        this.refresh = isNaN(this.$nuxt.$route.query.t)?30:parseInt(this.$nuxt.$route.query.t)
         setInterval(() => this.timestamp--, 1000) //ToDo: ajouter CORS au serveur
         setInterval(async function() { this.setvalues() }.bind(this), this.refresh*1000)
     },
