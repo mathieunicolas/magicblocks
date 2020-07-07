@@ -29,7 +29,7 @@ export default {
         return { data, dateMB, timestamp, refresh }
     },
     mounted() {
-        this.refresh = this.$nuxt.$route.query.t || null
+        this.refresh = this.$nuxt.$route.query.t || 30
         setInterval(() => this.timestamp--, 1000) //ToDo: ajouter CORS au serveur
         setInterval(async function() { this.setvalues() }.bind(this), this.refresh*1000)
     },
@@ -41,7 +41,7 @@ export default {
             this.dateMB = this.dateMB.toLocaleString('en-GB', {weekday: "long", year: "numeric", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit", second: "2-digit", timeZoneName: "short"})
         },
         getNow: function() {
-            const today = new Date();
+            const today = new Date(Date.now() + this.timestamp);
             const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
             const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
             const dateTime = date +' '+ time;
